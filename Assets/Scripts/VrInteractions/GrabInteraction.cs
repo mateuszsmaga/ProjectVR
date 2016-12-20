@@ -18,6 +18,7 @@ public class GrabInteraction : MonoBehaviour {
     private GameObject m_Hook;
     private Image disableReticle;
 
+    private GameObject oldParent;
 
     private Rigidbody rigBody;
     private VRInteractiveItem m_InteractiveItem;
@@ -34,6 +35,7 @@ public class GrabInteraction : MonoBehaviour {
         GameObject reticle = GameObject.Find("TestCameraRay/VRUI/Reticle");
         disableReticle = reticle.GetComponent(typeof(Image)) as Image;
         rigBody = GetComponent<Rigidbody>();
+        oldParent = new GameObject();
     }
 
 
@@ -66,30 +68,35 @@ public class GrabInteraction : MonoBehaviour {
 
     //Handle the Out event
     private void HandleOut() {
-        Debug.Log("Show out state");
+        //Debug.Log("Show out state");
         m_Renderer.material = m_NormalMaterial;
+        if (oldParent != null) {
+            gameObject.transform.parent = oldParent.transform.parent;
+        }
         disableReticle.enabled = true;
         rigBody.useGravity = true;
         canGrab = true;
-        gameObject.transform.parent = null;
+        
     }
 
 
     //Handle the Click event
     private void HandleClick() {
-        Debug.Log("Show click state");
+        //Debug.Log("Show click state");
     }
 
 
-
+    //Handle space press
     private void HandleSpacePress() {
-        Debug.Log("Space pressed");
         if (canGrab) {
+            oldParent.transform.parent = gameObject.transform.parent;
             gameObject.transform.parent = m_Hook.transform;
             rigBody.useGravity = false;
             canGrab = false;
         }else {
-            gameObject.transform.parent = null;
+            if (oldParent != null) {
+                gameObject.transform.parent = oldParent.transform.parent;
+            }
             rigBody.useGravity = true;
             canGrab = true;
         }

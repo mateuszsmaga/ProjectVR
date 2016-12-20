@@ -63,18 +63,13 @@ public class VREyeRaycaster : MonoBehaviour {
         }
     }
 
-<<<<<<< HEAD
     //Obsługa teleportu
-=======
->>>>>>> origin/master
     private void Teleport() {
         // Create a ray that points forwards from the camera.
         Ray ray = new Ray(m_Camera.position, m_Camera.forward);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, m_RayLength, ~m_ExclusionLayers)) {
             Vector3 location = new Vector3(hit.point.x, hit.point.y+1.8f, hit.point.z);
-<<<<<<< HEAD
-            Debug.Log("Show click state"+gameObject.transform.position.y+" - ile to jest?");
             if (hit.point.y < 0.1f) {
                 VRCameraFade fade = gameObject.GetComponent(typeof(VRCameraFade)) as VRCameraFade;
                 if (fade != null) {
@@ -85,18 +80,6 @@ public class VREyeRaycaster : MonoBehaviour {
                     fade.FadeOut(false);
                 }
             }
-            
-=======
-
-            VRCameraFade fade = gameObject.GetComponent(typeof(VRCameraFade)) as VRCameraFade;
-            if(fade != null) {
-                fade.FadeIn(false);
-            }
-            gameObject.transform.position = location;
-            if (fade != null) {
-                fade.FadeOut(false);
-            }
->>>>>>> origin/master
         }
     }
 

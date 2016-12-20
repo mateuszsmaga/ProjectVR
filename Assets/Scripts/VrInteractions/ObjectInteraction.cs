@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
-<<<<<<< HEAD
 using UnityEngine.UI;
-=======
 
->>>>>>> origin/master
 // This script is a simple example of how an interactive item can
 // be used to change things on gameobjects by handling events.
 [RequireComponent(typeof(VRInteractiveItem))]
@@ -20,11 +17,8 @@ public class ObjectInteraction : MonoBehaviour {
     private GameObject m_Hook;
     [SerializeField]
     private GameObject m_loadedObject;
-<<<<<<< HEAD
     [SerializeField]
     private Image disableReticle;
-=======
->>>>>>> origin/master
 
 
     private VRInteractiveItem m_InteractiveItem;
@@ -62,10 +56,7 @@ public class ObjectInteraction : MonoBehaviour {
     private void HandleOver() {
         Debug.Log("Show over state");
         m_Renderer.material = m_OverMaterial;
-<<<<<<< HEAD
         disableReticle.enabled = false;
-=======
->>>>>>> origin/master
     }
 
 
@@ -73,10 +64,7 @@ public class ObjectInteraction : MonoBehaviour {
     private void HandleOut() {
         Debug.Log("Show out state");
         m_Renderer.material = m_NormalMaterial;
-<<<<<<< HEAD
         disableReticle.enabled = true;
-=======
->>>>>>> origin/master
     }
 
 
