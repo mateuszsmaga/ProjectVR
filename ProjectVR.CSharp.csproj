@@ -75,10 +75,7 @@
     <Compile Include="Assets\Scripts\SmoothMouseLook.cs" />
     <Compile Include="Assets\Scripts\VrInteractions\ColourChangeOver.cs" />
     <Compile Include="Assets\Scripts\VrInteractions\ExampleInteraction.cs" />
-<<<<<<< HEAD
     <Compile Include="Assets\Scripts\VrInteractions\GrabInteraction.cs" />
-=======
->>>>>>> origin/master
     <Compile Include="Assets\Scripts\VrInteractions\ObjectInteraction.cs" />
     <Compile Include="Assets\Scripts\VrInteractions\Reticle.cs" />
     <Compile Include="Assets\Scripts\VrInteractions\VRCameraFade.cs" />
