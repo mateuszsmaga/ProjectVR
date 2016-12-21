@@ -15,10 +15,11 @@ public class GrabInteraction : MonoBehaviour {
     private Material m_OverMaterial;
 
 
-    private GameObject m_Hook;
-    private Image disableReticle;
 
     private GameObject oldParent;
+
+    private GameObject m_Hook;
+    private Image disableReticle;
 
     private Rigidbody rigBody;
     private VRInteractiveItem m_InteractiveItem;
@@ -35,7 +36,13 @@ public class GrabInteraction : MonoBehaviour {
         GameObject reticle = GameObject.Find("TestCameraRay/VRUI/Reticle");
         disableReticle = reticle.GetComponent(typeof(Image)) as Image;
         rigBody = GetComponent<Rigidbody>();
-        oldParent = new GameObject();
+        if (gameObject.transform.parent != null) {
+            oldParent = gameObject.transform.parent.gameObject;
+        }else {
+            oldParent = GameObject.Find("allMovables").gameObject;
+            gameObject.transform.parent = oldParent.transform;
+        }
+        
     }
 
 
@@ -70,13 +77,10 @@ public class GrabInteraction : MonoBehaviour {
     private void HandleOut() {
         //Debug.Log("Show out state");
         m_Renderer.material = m_NormalMaterial;
-        if (oldParent != null) {
-            gameObject.transform.parent = oldParent.transform.parent;
-        }
-        disableReticle.enabled = true;
+        gameObject.transform.parent = oldParent.transform;
         rigBody.useGravity = true;
         canGrab = true;
-        
+        disableReticle.enabled = true;  
     }
 
 
@@ -89,14 +93,12 @@ public class GrabInteraction : MonoBehaviour {
     //Handle space press
     private void HandleSpacePress() {
         if (canGrab) {
-            oldParent.transform.parent = gameObject.transform.parent;
+            oldParent.transform.parent = gameObject.transform;
             gameObject.transform.parent = m_Hook.transform;
             rigBody.useGravity = false;
             canGrab = false;
         }else {
-            if (oldParent != null) {
-                gameObject.transform.parent = oldParent.transform.parent;
-            }
+            gameObject.transform.parent = oldParent.transform;
             rigBody.useGravity = true;
             canGrab = true;
         }

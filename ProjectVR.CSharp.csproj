@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\ButtonClick.cs" />
     <Compile Include="Assets\Scripts\FPSDisplay.cs" />
+    <Compile Include="Assets\Scripts\NightMaker.cs" />
     <Compile Include="Assets\Scripts\ObjImporter.cs" />
     <Compile Include="Assets\Scripts\SmoothMouseLook.cs" />
     <Compile Include="Assets\Scripts\VrInteractions\ColourChangeOver.cs" />

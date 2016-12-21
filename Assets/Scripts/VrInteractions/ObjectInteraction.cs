@@ -20,12 +20,12 @@ public class ObjectInteraction : MonoBehaviour {
     [SerializeField]
     private Image disableReticle;
 
-
     private VRInteractiveItem m_InteractiveItem;
     private Renderer m_Renderer;
 
     private bool canLoad = true;
 
+    private int counter = 0;
 
     private void Awake() {
         m_InteractiveItem = gameObject.GetComponent<VRInteractiveItem>();
@@ -71,14 +71,6 @@ public class ObjectInteraction : MonoBehaviour {
     //Handle the Click event
     private void HandleClick() {
         Debug.Log("Show click state");
-
-        if (canLoad) {
-            GameObject childObject = Instantiate(m_loadedObject) as GameObject;
-            childObject.transform.position = m_Hook.transform.position;
-            childObject.transform.localScale = new Vector3(scaleXYZ, scaleXYZ, scaleXYZ);
-            canLoad = false;
-        }
-
     }
 
 
@@ -89,8 +81,16 @@ public class ObjectInteraction : MonoBehaviour {
             GameObject childObject = Instantiate(m_loadedObject) as GameObject;
             childObject.transform.position = m_Hook.transform.position;
             childObject.transform.localScale = new Vector3(scaleXYZ, scaleXYZ, scaleXYZ);
+            maxLoadHandler();
+        }
+    }
+
+    private void maxLoadHandler() {
+        counter++;
+        if (counter > 5) {
             canLoad = false;
         }
+
     }
 
     //Handle the DoubleClick event
